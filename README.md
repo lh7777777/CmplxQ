@@ -11,11 +11,21 @@ We have implemented the code for CmplxQ, including `\client` and `\sgx_buffer` a
 
 Then follow the instructions to enter the range join, for example:
 
-    load a 1.csv
-    load b 2.csv
-    buildindex a table1_key.txt file/eneq1.txt file/enkd1.txt file/ibf1.txt on type1 id1 age1
-    buildindex b table2_key.txt file/eneq2.txt file/enkd2.txt file/ibf1.txt on type2 id2 age2
-    rangejoin a type1 on b type2 and 4 on + 0 20000 and + 0 200
+1. load csv files:
+    load a table1.csv
+    load b table2.csv
+2. buildindex:
+    buildindex a table1_key.txt eneq1.txt enkd1.txt ibf1.txt on eqA raA1 raA2
+    buildindex b table2_key.txt eneq2.txt enkd2.txt ibf1.txt on eqB raB1 raB2
+3. rangejoin:
+    rangejoin a eqA on b eqB and 1 on xmin xmax ymin ymax
+   or
+    rangejoin a eqA on b eqB and 2 on rmin rmax nmin nmax
+   or
+    rangejoin a eqA on b eqB and 3 on xmin xmax ymin ymax rmin rmax nmin nmax
+   or
+    rangejoin a eqA on b eqB and 4 on +/- pmin pmax and +/- qmin qmax  
+5. exit:
     exit
 
 ### sgx_buffer
